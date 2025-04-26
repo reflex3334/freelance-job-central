@@ -6,7 +6,7 @@ import AddProject from './AddProject';
 
 const ClientDashboard = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex min-h-screen">
       <MainSidebar />
       <main className="flex-1 overflow-auto bg-pink-50 p-6">
         <div className="container mx-auto space-y-6">
