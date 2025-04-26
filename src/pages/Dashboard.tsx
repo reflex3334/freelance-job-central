@@ -6,8 +6,10 @@ import ClientDashboard from '@/components/ClientDashboard';
 import { SidebarProvider } from "@/components/ui/sidebar";
 
 const Dashboard = () => {
-  // In a real app, this would come from authentication
-  const [userType] = React.useState<'freelancer' | 'client'>('client');
+  // Get the user type from localStorage, default to 'client' if not set
+  const [userType] = React.useState<'freelancer' | 'client'>(() => 
+    (localStorage.getItem('userType') as 'freelancer' | 'client') || 'client'
+  );
 
   return (
     <SidebarProvider defaultOpen={true}>
