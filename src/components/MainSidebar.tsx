@@ -8,12 +8,12 @@ import {
   FileBarChart,
   FilePlus,
   Settings,
+  Menu
 } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
   SidebarTrigger,
-  SidebarProvider,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
@@ -40,7 +40,9 @@ const MainSidebar = () => {
       <SidebarContent>
         <SidebarGroup>
           <div className="px-4 py-2">
-            <SidebarTrigger />
+            <SidebarTrigger>
+              <Menu className="h-5 w-5" />
+            </SidebarTrigger>
           </div>
           <SidebarGroupContent>
             <SidebarMenu>
