@@ -33,32 +33,30 @@ const menuItems = [
 
 const MainSidebar = () => {
   return (
-    <SidebarProvider>
-      <div className="flex min-h-screen w-full">
-        <Sidebar>
-          <SidebarContent>
-            <SidebarGroup>
-              <div className="px-4 py-2">
-                <SidebarTrigger />
-              </div>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {menuItems.map((item) => (
-                    <SidebarMenuItem key={item.label}>
-                      <SidebarMenuButton asChild tooltip={item.label}>
-                        <a href={item.href} className="flex items-center gap-2">
-                          <item.icon className="h-5 w-5" />
-                          <span>{item.label}</span>
-                        </a>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          </SidebarContent>
-        </Sidebar>
-      </div>
+    <SidebarProvider defaultOpen={true}>
+      <Sidebar className="z-50">
+        <SidebarContent>
+          <SidebarGroup>
+            <div className="px-4 py-2">
+              <SidebarTrigger />
+            </div>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {menuItems.map((item) => (
+                  <SidebarMenuItem key={item.label}>
+                    <SidebarMenuButton asChild tooltip={item.label}>
+                      <a href={item.href} className="flex items-center gap-2">
+                        <item.icon className="h-5 w-5" />
+                        <span>{item.label}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+      </Sidebar>
     </SidebarProvider>
   );
 };

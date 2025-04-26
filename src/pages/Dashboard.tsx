@@ -11,11 +11,13 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <DashboardNav userType={userType} />
-      {userType === 'client' ? (
-        <ClientDashboard />
-      ) : (
-        <FreelancerDashboard />
-      )}
+      <div className="w-full">
+        {userType === 'client' ? (
+          <ClientDashboard />
+        ) : (
+          <FreelancerDashboard />
+        )}
+      </div>
     </div>
   );
 };
