@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Eye } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -17,7 +18,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Eye } from 'lucide-react';
 
 const projects = [
   {
@@ -41,10 +41,10 @@ const ProjectList = () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Project Name</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Due Date</TableHead>
-            <TableHead>Action</TableHead>
+            <TableHead className="text-gray-600">Project Name</TableHead>
+            <TableHead className="text-gray-600">Status</TableHead>
+            <TableHead className="text-gray-600">Due Date</TableHead>
+            <TableHead className="text-gray-600">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -65,8 +65,8 @@ const ProjectList = () => {
               </TableCell>
               <TableCell>{project.dueDate}</TableCell>
               <TableCell>
-                <Button variant="outline" size="sm">
-                  <Eye className="h-4 w-4 mr-1" />
+                <Button variant="outline" size="sm" className="gap-2">
+                  <Eye className="h-4 w-4" />
                   View
                 </Button>
               </TableCell>
