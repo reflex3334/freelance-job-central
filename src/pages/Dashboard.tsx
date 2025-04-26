@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DashboardNav from '@/components/DashboardNav';
@@ -10,22 +9,12 @@ import PostJobForm from '@/components/PostJobForm';
 
 const Dashboard = () => {
   // In a real app, this would come from authentication
-  const [userType, setUserType] = React.useState<'freelancer' | 'client'>('freelancer');
+  const [userType] = React.useState<'freelancer' | 'client'>('freelancer');
 
   return (
     <div className="min-h-screen bg-gray-50">
       <DashboardNav userType={userType} />
       <div className="container mx-auto px-4 py-8">
-        {/* For demo purposes, we'll add a switch */}
-        <div className="mb-8 flex justify-end">
-          <Button
-            variant="outline"
-            onClick={() => setUserType(userType === 'freelancer' ? 'client' : 'freelancer')}
-          >
-            Switch to {userType === 'freelancer' ? 'Client' : 'Freelancer'} View
-          </Button>
-        </div>
-
         {userType === 'client' ? (
           <Tabs defaultValue="dashboard" className="w-full">
             <TabsList className="mb-8">

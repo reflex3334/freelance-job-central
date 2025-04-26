@@ -2,15 +2,34 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+
+const formSchema = z.object({
+  fullName: z.string().min(1, "Full name is required"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().min(1, "Phone number is required"),
+  companyName: z.string(),
+  companyWebsite: z.string(),
+  location: z.string().min(1, "Location is required"),
+  projectType: z.string().min(1, "Project type is required"),
+  projectDescription: z.string().min(1, "Project description is required"),
+  budgetRange: z.string().min(1, "Budget range is required"),
+  timeline: z.string().min(1, "Timeline is required"),
+  preferredSkills: z.string().min(1, "Preferred skills are required"),
+});
 
 const ClientRegistrationForm = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const form = useForm({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       fullName: '',
       email: '',
@@ -26,9 +45,12 @@ const ClientRegistrationForm = () => {
     }
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log(data);
-    // In a real app, you would save this data to your backend
+    toast({
+      title: "Registration successful",
+      description: "Welcome to FreelanceHub!",
+    });
     navigate('/dashboard');
   };
 
