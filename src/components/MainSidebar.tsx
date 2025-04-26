@@ -20,44 +20,55 @@ import {
   SidebarGroup,
   SidebarGroupContent,
 } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
 
 const menuItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', href: '#' },
-  { icon: Briefcase, label: 'Projects', href: '#' },
-  { icon: Users, label: 'Freelancers', href: '#' },
-  { icon: MessageSquare, label: 'Messages', href: '#' },
-  { icon: FileBarChart, label: 'Reports', href: '#' },
-  { icon: FilePlus, label: 'Post a Job', href: '#' },
-  { icon: Settings, label: 'Settings', href: '#' },
+  { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard' },
+  { icon: Briefcase, label: 'Projects', href: '#projects' },
+  { icon: Users, label: 'Freelancers', href: '#freelancers' },
+  { icon: MessageSquare, label: 'Messages', href: '#messages' },
+  { icon: FileBarChart, label: 'Reports', href: '#reports' },
+  { icon: FilePlus, label: 'Post a Job', href: '#post-job' },
+  { icon: Settings, label: 'Settings', href: '#settings' },
 ];
 
 const MainSidebar = () => {
+  const pathname = window.location.pathname;
+
   return (
-    <SidebarProvider defaultOpen={true}>
-      <Sidebar className="z-50">
-        <SidebarContent>
-          <SidebarGroup>
-            <div className="px-4 py-2">
-              <SidebarTrigger />
-            </div>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {menuItems.map((item) => (
-                  <SidebarMenuItem key={item.label}>
-                    <SidebarMenuButton asChild tooltip={item.label}>
-                      <a href={item.href} className="flex items-center gap-2">
-                        <item.icon className="h-5 w-5" />
-                        <span>{item.label}</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        </SidebarContent>
-      </Sidebar>
-    </SidebarProvider>
+    <Sidebar className="z-50 bg-white">
+      <SidebarContent>
+        <SidebarGroup>
+          <div className="px-4 py-2">
+            <SidebarTrigger />
+          </div>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {menuItems.map((item) => (
+                <SidebarMenuItem key={item.label}>
+                  <SidebarMenuButton 
+                    asChild 
+                    tooltip={item.label}
+                    data-active={pathname === item.href}
+                  >
+                    <a 
+                      href={item.href} 
+                      className={cn(
+                        "flex items-center gap-2 transition-colors",
+                        pathname === item.href && "text-primary font-medium"
+                      )}
+                    >
+                      <item.icon className="h-5 w-5" />
+                      <span>{item.label}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
   );
 };
 

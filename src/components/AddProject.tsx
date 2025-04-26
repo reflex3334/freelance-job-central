@@ -24,13 +24,13 @@ const AddProject = () => {
   const [date, setDate] = React.useState<Date>();
 
   return (
-    <Card className="p-6">
-      <h2 className="text-xl font-semibold mb-4">Add New Project</h2>
+    <Card className="bg-white p-6">
+      <h2 className="text-xl font-semibold text-gray-800 mb-6">Add New Project</h2>
       <form className="space-y-4">
         <div>
           <Input
             placeholder="Project Name"
-            className="max-w-sm"
+            className="max-w-sm border-gray-200 focus:border-gray-300 focus:ring-gray-200"
           />
         </div>
         <div>
@@ -49,9 +49,9 @@ const AddProject = () => {
           <Popover>
             <PopoverTrigger asChild>
               <Button
-                variant={"outline"}
+                variant="outline"
                 className={cn(
-                  "max-w-sm justify-start text-left font-normal",
+                  "max-w-sm w-full justify-start text-left font-normal border-gray-200",
                   !date && "text-muted-foreground"
                 )}
               >
@@ -70,7 +70,7 @@ const AddProject = () => {
             </PopoverContent>
           </Popover>
         </div>
-        <Button className="bg-green-500 hover:bg-green-600">
+        <Button className="bg-green-500 hover:bg-green-600 text-white">
           Add Project
         </Button>
       </form>

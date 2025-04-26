@@ -36,21 +36,23 @@ const projects = [
 
 const ProjectList = () => {
   return (
-    <Card className="p-6">
-      <h2 className="text-xl font-semibold mb-4">Current Projects</h2>
+    <Card className="overflow-hidden border bg-white shadow-sm">
+      <div className="p-6">
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">Current Projects</h2>
+      </div>
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="text-gray-600">Project Name</TableHead>
-            <TableHead className="text-gray-600">Status</TableHead>
-            <TableHead className="text-gray-600">Due Date</TableHead>
-            <TableHead className="text-gray-600">Action</TableHead>
+            <TableHead className="font-semibold">Project Name</TableHead>
+            <TableHead className="font-semibold">Status</TableHead>
+            <TableHead className="font-semibold">Due Date</TableHead>
+            <TableHead className="font-semibold">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {projects.map((project) => (
             <TableRow key={project.id}>
-              <TableCell>{project.name}</TableCell>
+              <TableCell className="font-medium">{project.name}</TableCell>
               <TableCell>
                 <Select defaultValue={project.status}>
                   <SelectTrigger className="w-[140px]">
@@ -65,8 +67,12 @@ const ProjectList = () => {
               </TableCell>
               <TableCell>{project.dueDate}</TableCell>
               <TableCell>
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Eye className="h-4 w-4" />
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="text-blue-600 border-blue-600 hover:bg-blue-50"
+                >
+                  <Eye className="h-4 w-4 mr-1" />
                   View
                 </Button>
               </TableCell>
