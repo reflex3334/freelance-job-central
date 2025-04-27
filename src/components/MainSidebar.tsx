@@ -34,12 +34,12 @@ const menuItems = [
 
 const MainSidebar = () => {
   const pathname = window.location.pathname;
-
+  
   return (
-    <Sidebar className="z-50 bg-white">
+    <Sidebar collapsible="icon" className="z-50 bg-white">
       <SidebarContent>
         <SidebarGroup>
-          <div className="px-4 py-2">
+          <div className="px-4 py-2 flex items-center">
             <SidebarTrigger>
               <Menu className="h-5 w-5" />
             </SidebarTrigger>
