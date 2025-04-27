@@ -44,14 +44,21 @@ const FreelancerRegistrationForm = () => {
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-    // Store the user type in localStorage or session storage for persistence
+    console.log("Freelancer registration form submitted:", data);
+    
+    // Store the user type in localStorage for persistence
     localStorage.setItem('userType', 'freelancer');
+    console.log("User type set in localStorage:", localStorage.getItem('userType'));
+    
     toast({
       title: "Registration successful",
       description: "Welcome to FreelanceHub!",
     });
-    navigate('/dashboard');
+    
+    // Add a slight delay to ensure localStorage is updated before navigation
+    setTimeout(() => {
+      navigate('/dashboard');
+    }, 100);
   };
 
   return (

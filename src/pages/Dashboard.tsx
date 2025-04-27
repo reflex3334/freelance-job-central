@@ -1,15 +1,22 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DashboardNav from '@/components/DashboardNav';
 import FreelancerDashboard from '@/components/FreelancerDashboard';
 import ClientDashboard from '@/components/ClientDashboard';
 import { SidebarProvider } from "@/components/ui/sidebar";
 
 const Dashboard = () => {
-  // Get the user type from localStorage, default to 'client' if not set
-  const [userType] = React.useState<'freelancer' | 'client'>(() => 
-    (localStorage.getItem('userType') as 'freelancer' | 'client') || 'client'
-  );
+  const [userType, setUserType] = useState<'freelancer' | 'client'>('client');
+  
+  useEffect(() => {
+    // Get the user type from localStorage
+    const storedUserType = localStorage.getItem('userType') as 'freelancer' | 'client';
+    console.log("User type from localStorage:", storedUserType);
+    
+    if (storedUserType) {
+      setUserType(storedUserType);
+    }
+  }, []);
 
   return (
     <SidebarProvider defaultOpen={true}>
