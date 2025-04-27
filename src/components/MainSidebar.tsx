@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
   Briefcase,
@@ -22,18 +23,19 @@ import {
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 
-const menuItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard' },
-  { icon: Briefcase, label: 'Projects', href: '#projects' },
-  { icon: Users, label: 'Freelancers', href: '#freelancers' },
-  { icon: MessageSquare, label: 'Messages', href: '#messages' },
-  { icon: FileBarChart, label: 'Reports', href: '#reports' },
-  { icon: FilePlus, label: 'Post a Job', href: '#post-job' },
-  { icon: Settings, label: 'Settings', href: '#settings' },
-];
-
 const MainSidebar = () => {
+  const navigate = useNavigate();
   const pathname = window.location.pathname;
+  
+  const menuItems = [
+    { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard' },
+    { icon: Briefcase, label: 'Projects', href: '#projects' },
+    { icon: Users, label: 'Freelancers', href: '#freelancers' },
+    { icon: MessageSquare, label: 'Messages', href: '#messages' },
+    { icon: FileBarChart, label: 'Reports', href: '#reports' },
+    { icon: FilePlus, label: 'Post a Job', href: '/dashboard/post-job' },
+    { icon: Settings, label: 'Settings', href: '#settings' },
+  ];
   
   return (
     <Sidebar collapsible="icon" className="z-50 bg-white">

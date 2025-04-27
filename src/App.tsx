@@ -10,6 +10,7 @@ import RoleSelection from "./pages/RoleSelection";
 import FreelancerRegistration from "./pages/FreelancerRegistration";
 import ClientRegistration from "./pages/ClientRegistration";
 import Dashboard from "./pages/Dashboard";
+import PostJob from "./pages/PostJob";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/freelancer-registration" element={<FreelancerRegistration />} />
           <Route path="/client-registration" element={<ClientRegistration />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/post-job" element={<PostJob />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

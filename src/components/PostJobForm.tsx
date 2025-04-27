@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,11 +18,33 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const PostJobForm = () => {
+interface PostJobFormProps {
+  onSubmit: (formData: any) => void;
+}
+
+const PostJobForm = ({ onSubmit }: PostJobFormProps) => {
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    category: '',
+    budget: '',
+    skills: '',
+    duration: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+  
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted');
+    // Validate form if needed
+    onSubmit(formData);
   };
 
   return (
@@ -34,7 +56,13 @@ const PostJobForm = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="title">Job Title</Label>
-            <Input id="title" placeholder="e.g., Frontend Developer Needed" required />
+            <Input 
+              id="title" 
+              placeholder="e.g., Frontend Developer Needed" 
+              required 
+              value={formData.title}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="space-y-2">
@@ -44,13 +72,15 @@ const PostJobForm = () => {
               placeholder="Describe your project requirements..."
               rows={5}
               required
+              value={formData.description}
+              onChange={handleChange}
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label htmlFor="category">Category</Label>
-              <Select>
+              <Select onValueChange={(value) => handleSelectChange('category', value)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
@@ -65,18 +95,31 @@ const PostJobForm = () => {
 
             <div className="space-y-2">
               <Label htmlFor="budget">Budget</Label>
-              <Input id="budget" type="number" placeholder="Enter amount in USD" required />
+              <Input 
+                id="budget" 
+                type="number" 
+                placeholder="Enter amount in USD" 
+                required
+                value={formData.budget}
+                onChange={handleChange}
+              />
             </div>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="skills">Required Skills</Label>
-            <Input id="skills" placeholder="e.g., React, TypeScript, Node.js" required />
+            <Input 
+              id="skills" 
+              placeholder="e.g., React, TypeScript, Node.js" 
+              required
+              value={formData.skills}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="duration">Project Duration</Label>
-            <Select>
+            <Select onValueChange={(value) => handleSelectChange('duration', value)}>
               <SelectTrigger>
                 <SelectValue placeholder="Select duration" />
               </SelectTrigger>
